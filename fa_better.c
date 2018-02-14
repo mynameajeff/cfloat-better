@@ -134,26 +134,27 @@ better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned 
 
     float* new_array = malloc(size);
 
-    if (lor == 0) {
-        
-        for (int i = 0; i < array_2->len; i++) {
-            new_array[i] = array_2->array[i];
-        }
+    better_float *arr_1, *arr_2;
 
-        for (int i = 0; i < array_1->len; i++) {
-            new_array[i + array_2->len] = array_1->array[i];
-        }
+    if (lor == 0) {
+
+        arr_1 = array_2;
+        arr_2 = array_1;
     }
 
     else {
-        
-        for (int i = 0; i < array_1->len; i++) {
-            new_array[i] = array_1->array[i];
-        }
 
-        for (int i = 0; i < array_2->len; i++) {
-            new_array[i + array_1->len] = array_2->array[i];
-        }
+        arr_1 = array_1;
+        arr_2 = array_2;
+    }
+
+
+    for (int i = 0; i < arr_1->len; i++) {
+        new_array[i] = arr_1->array[i];
+    }
+
+    for (int i = 0; i < arr_2->len; i++) {
+        new_array[i + arr_1->len] = arr_2->array[i];
     }
 
     if (array_1->isMalloc) free(array_1->array);
