@@ -94,9 +94,9 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor) {
     bool isLooping = true;
     bool isCutting = false;
 
-    unsigned lor_checked = ((lor == 0) ? index : (array->len - index));
+    unsigned length = ((lor == 0) ? index : (array->len - index));
 
-    unsigned size = sizeof(float) * lor_checked;
+    unsigned size = sizeof(float) * length;
 
     float* new_array = malloc(size);
 
@@ -123,13 +123,14 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor) {
 
     if (array->isMalloc) free(array->array);
 
-    return fa_expanded_get_arr(new_array, size, lor_checked, true);
+    return fa_expanded_get_arr(new_array, size, length, true);
 }
 
 
 better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned lor) {
 
-    unsigned size = sizeof(float) * (array_1->len + array_2->len);
+    unsigned length = (array_1->len + array_2->len);
+    unsigned size   = sizeof(float) * length;
 
     float* new_array = malloc(size);
 
@@ -158,5 +159,24 @@ better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned 
     if (array_1->isMalloc) free(array_1->array);
     if (array_2->isMalloc) free(array_2->array);
 
-    return fa_expanded_get_arr(new_array, size, (array_1->len + array_2->len), true);
+    return fa_expanded_get_arr(new_array, size, length, true);
+}
+
+
+better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor) {
+
+    unsigned length = (array->len - len);
+    unsigned size   = sizeof(float) * length;
+
+    float* new_array = malloc(size);
+
+    for (unsigned i = 0; i < length; i++) {
+        new_array[i] = array->array[
+            (lor == 0) ? i + len : i
+        ];
+    }
+
+    if (array->isMalloc) free(array->array);
+
+    return fa_expanded_get_arr(new_array, size, length, true);
 }
