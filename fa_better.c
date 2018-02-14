@@ -8,14 +8,14 @@ void fa_clean_arr(better_float* array) {
 }
 
 
-better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length) {
+better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc) {
 
     better_float arr;
 
-    arr.len   = length;
-    arr.type  = size_param;
-    arr.array = float_array;
-    arr.isMalloc = false;
+    arr.len      = length;
+    arr.type     = size_param;
+    arr.array    = float_array;
+    arr.isMalloc = isMalloc;
 
     return arr;
 }
@@ -85,14 +85,7 @@ better_float fa_del_value(better_float* array, unsigned index) {
 
     }
 
-    better_float replace_arr;
-
-    replace_arr.len   = new_length;
-    replace_arr.type  = size;
-    replace_arr.array = new_array;
-    replace_arr.isMalloc = true;
-
-    return replace_arr;
+    return fa_expanded_get_arr(new_array, size, new_length, true);
 }
 
 
@@ -120,7 +113,7 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor) {
 
         else {
 
-            if      (lor == 0)  new_array[i] = array->array[i];
+            if (lor == 0)       new_array[i]   = array->array[i];
 
             else if (isCutting) new_array[n++] = array->array[i - 1];
         }
@@ -130,12 +123,40 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor) {
 
     if (array->isMalloc) free(array->array);
 
-    better_float replace_arr;
+    return fa_expanded_get_arr(new_array, size, lor_checked, true);
+}
 
-    replace_arr.len = lor_checked;
-    replace_arr.type = size;
-    replace_arr.array = new_array;
-    replace_arr.isMalloc = true;
 
-    return replace_arr;
+better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned lor) {
+
+    unsigned size = sizeof(float) * (array_1->len + array_2->len);
+
+    float* new_array = malloc(size);
+
+    if (lor == 0) {
+        
+        for (int i = 0; i < array_2->len; i++) {
+            new_array[i] = array_2->array[i];
+        }
+
+        for (int i = 0; i < array_1->len; i++) {
+            new_array[i + array_2->len] = array_1->array[i];
+        }
+    }
+
+    else {
+        
+        for (int i = 0; i < array_1->len; i++) {
+            new_array[i] = array_1->array[i];
+        }
+
+        for (int i = 0; i < array_2->len; i++) {
+            new_array[i + array_1->len] = array_2->array[i];
+        }
+    }
+
+    if (array_1->isMalloc) free(array_1->array);
+    if (array_2->isMalloc) free(array_2->array);
+
+    return fa_expanded_get_arr(new_array, size, (array_1->len + array_2->len), true);
 }
