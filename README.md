@@ -1,7 +1,7 @@
 # cfloat-better
 A simple attempt at making arrays a little easier to work with in C. 
 
-## MACROS
+## MACROS:
 
 ### fa_get_array(float_array)
   This macro should be used to get a "better_float" instance, of which is derived from a structure.
