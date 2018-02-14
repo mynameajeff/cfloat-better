@@ -23,7 +23,7 @@
 // STRUCTURE DEFINITIONS:
 
 typedef struct {
-    
+
     float*        array;    //self-explanatory
 
     unsigned      type;     //type of array e.g. char*
@@ -45,7 +45,6 @@ better_float fa_expanded_get_arr(
     unsigned length,
 
     bool isMalloc
-
 );
 
 void         fa_set_value(better_float* array, unsigned index, float value);
@@ -56,11 +55,6 @@ better_float fa_del_value(better_float* array, unsigned index);
 void         fa_clean_arr(better_float* array);
 better_float fa_split_arr(better_float* array, unsigned index, unsigned lor);
 
-better_float fa_join_arr(
-
-    better_float* array_1, 
-    better_float* array_2, 
-    
-    unsigned lor
-);
+better_float fa_join_arr (better_float* array_1, better_float* array_2, unsigned lor);
+better_float fa_trim_arr (better_float* array, unsigned len, unsigned lor);
 //~~~~~~~~~~~~~~~~~~~~~
