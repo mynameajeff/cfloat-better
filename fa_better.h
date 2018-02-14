@@ -16,7 +16,7 @@
     exit(1); \
 }
 
-#define fa_get_array(float_array) fa_expanded_get_arr(float_array, sizeof(float_array), N_ITEMS(float_array))
+#define fa_get_array(float_array) fa_expanded_get_arr(float_array, sizeof(float_array), N_ITEMS(float_array), false)
 //~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -39,10 +39,12 @@ typedef struct {
 
 better_float fa_expanded_get_arr(
 
-	float* float_array, 
+    float* float_array, 
 
-	unsigned size_param, 
-	unsigned length
+    unsigned size_param, 
+    unsigned length,
+
+    bool isMalloc
 
 );
 
@@ -53,4 +55,12 @@ better_float fa_del_value(better_float* array, unsigned index);
 
 void         fa_clean_arr(better_float* array);
 better_float fa_split_arr(better_float* array, unsigned index, unsigned lor);
+
+better_float fa_join_arr(
+
+    better_float* array_1, 
+    better_float* array_2, 
+    
+    unsigned lor
+);
 //~~~~~~~~~~~~~~~~~~~~~
