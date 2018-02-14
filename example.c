@@ -50,6 +50,10 @@ void showcase(better_float* array) {
 
     output_better_array(array);
 
+    *array = fa_trim_arr(array, 3, 1);
+
+    output_better_array(array);
+
     fa_clean_arr(array);
 
 }
