@@ -56,6 +56,11 @@ A simple attempt at making arrays a little easier to work with in C.
   This function allows you to join two instances of better_float together.
   If `lor` is 0, array_2 will be appended to the left of array_1,
   and if `lor` is non-0, array_2 will be appended to the right of array_1.
-  
+
+### better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor);
+  This function allows you to trim `len` items on the left or right on the given array,
+  If `lor` is 0, array will be trimmed on the left,
+  and if `lor` is non-0, array will be trimmed on the right.
+
 #### better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc);
   This function is what `fa_get_array` expands to. This is also used in some other functions to return a better_float instance.
