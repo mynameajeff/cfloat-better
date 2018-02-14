@@ -41,7 +41,15 @@ void showcase(better_float* array) {
     *array = fa_split_arr(array, 3, 1);
 
     output_better_array(array);
+
+    float flarr[5] = {20, 40, 50, 70, 33};
+
+    better_float array_2 = fa_get_array(flarr);
     
+    *array = fa_join_arr(array, &array_2, 0);
+
+    output_better_array(array);
+
     fa_clean_arr(array);
 
 }
