@@ -47,7 +47,7 @@ void showcase(better_float* array) {
 }
 
 
-void output_normal_array(float      *array) {
+void output_normal_array(float        *array) {
 
     printf("-------float normal-------\ncontents:");
 
