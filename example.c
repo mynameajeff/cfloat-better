@@ -6,7 +6,13 @@
 void output_normal_array(float*        array);
 void output_better_array(better_float* array);
 
-void showcase(better_float* array);
+void showcase_set     (better_float* array);
+void showcase_del     (better_float* array);
+void showcase_split   (better_float* array);
+void showcase_join    (better_float* array);
+void showcase_trim    (better_float* array);
+void showcase_double  (better_float* array);
+void showcase_reverse (better_float* array);
 
 
 int main() {
@@ -18,13 +24,23 @@ int main() {
     output_normal_array( float_array_1);
     output_better_array(&float_array_2);
 
-    showcase(&float_array_2);
+    showcase_set    (&float_array_2);
+    showcase_del    (&float_array_2);
+    showcase_split  (&float_array_2);
+    showcase_join   (&float_array_2);
+    showcase_trim   (&float_array_2);
+    showcase_double (&float_array_2);
+    showcase_reverse(&float_array_2);
+
+    printf("\nSum of all items in the array: %.f\n", fa_get_sum(&float_array_2));
+
+    fa_clean_arr(&float_array_2);
 
     return 0;
 }
 
 
-void showcase(better_float* array) {
+void showcase_set(better_float* array) {
 
     printf("\noriginal value of float_array_2[0]: %.1f\n", fa_get_value(array, 0));
 
@@ -33,14 +49,26 @@ void showcase(better_float* array) {
     printf("changed value of float_array_2[0]:  %.1f\n", fa_get_value(array, 0));
 
     output_better_array(array);
+}
+
+
+void showcase_del(better_float* array) {
 
     *array = fa_del_value(array, 0);
 
     output_better_array(array);
+}
+
+
+void showcase_split(better_float* array) {
 
     *array = fa_split_arr(array, 3, 1);
 
     output_better_array(array);
+}
+
+
+void showcase_join(better_float* array) {
 
     float flarr[5] = {20, 40, 50, 70, 33};
 
@@ -49,10 +77,19 @@ void showcase(better_float* array) {
     *array = fa_join_arr(array, &array_2, 0);
 
     output_better_array(array);
+}
+
+
+void showcase_trim(better_float* array) {
 
     *array = fa_trim_arr(array, 3, 1);
 
     output_better_array(array);
+}
+
+
+//instead of showing off a specific function, this one shows an example of how to join an array to itself.
+void showcase_double(better_float* array) {
 
     array->shouldFree = false;
 
@@ -63,12 +100,14 @@ void showcase(better_float* array) {
     *array = fa_join_arr(array, &float_array_3, 0);
 
     output_better_array(array);
+}
+
+
+void showcase_reverse(better_float* array) {
 
     *array = fa_reverse_arr(array);
 
     output_better_array(array);
-
-    fa_clean_arr(array);
 }
 
 
@@ -92,5 +131,5 @@ void output_better_array(better_float *array) {
 
     printf("\nlen of array: %u\n", array->len);
 
-    printf("sizeof(array): %d\n", array->type);
+    printf("sizeof(array): %d\n", array->size_of);
 }
