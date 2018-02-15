@@ -59,4 +59,6 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor);
 
 better_float fa_join_arr (better_float* array_1, better_float* array_2, unsigned lor);
 better_float fa_trim_arr (better_float* array, unsigned len, unsigned lor);
+
+better_float fa_reverse_arr(better_float* array);
 //~~~~~~~~~~~~~~~~~~~~~
