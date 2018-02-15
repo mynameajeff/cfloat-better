@@ -27,9 +27,14 @@ A simple attempt at making arrays a little easier to work with in C.
   This would contain the length of the array member, 
   and is a bitfield of 24 bits to allow the structure to be 16 bytes in size, and not 24 bytes.
 
-### bool isMalloc;
+### bool isMalloc : 1;
   This would contain either `true` or `false`, and is used to determine if the instance was created directly, or internally malloc'd. This is needed to avoid most memory leaks.
+  It is a bitfield of size 1.
 
+### bool shouldFree : 1;
+  This is by default `true`, but can be changed to `false` by the user if desired.
+  The point of it is so that when an instance of `better_float` is passed to a function that returns an altered version of that instance's contents in a new instance, you can now decide if you want it to free the instance's array, allowing you to mix and match different instances instead of just influencing one all the time. It also influences the behavior of `fa_clean_arr()` the same way.
+  It is a bitfield of size 1.
 
 ## FUNCTIONS:
 
@@ -62,5 +67,5 @@ A simple attempt at making arrays a little easier to work with in C.
   If `lor` is 0, array will be trimmed on the left,
   and if `lor` is non-0, array will be trimmed on the right.
 
-#### better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc);
+#### better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc, bool shouldFree);
   This function is what `fa_get_array` expands to. This is also used in some other functions to return a better_float instance.
