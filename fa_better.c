@@ -86,6 +86,9 @@ better_float fa_del_value(better_float* array, unsigned index) {
 
     }
 
+
+    fa_clean_arr(array);
+
     return fa_expanded_get_arr(new_array, size, new_length, true, true);
 }
 
@@ -122,7 +125,7 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor) {
     }
 
 
-    if (array->isMalloc && array->shouldFree) free(array->array);
+    fa_clean_arr(array);
 
     return fa_expanded_get_arr(new_array, size, length, true, true);
 }
@@ -158,8 +161,8 @@ better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned 
         new_array[i + arr_1->len] = arr_2->array[i];
     }
 
-    if (array_1->isMalloc && array_1->shouldFree) free(array_1->array);
-    if (array_2->isMalloc && array_2->shouldFree) free(array_2->array);
+    fa_clean_arr(array_1);
+    fa_clean_arr(array_2);
 
     return fa_expanded_get_arr(new_array, size, length, true, true);
 }
@@ -178,7 +181,7 @@ better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor) {
         ];
     }
 
-    if (array->isMalloc && array->shouldFree) free(array->array);
+    fa_clean_arr(array);
 
     return fa_expanded_get_arr(new_array, size, length, true, true);
 }
