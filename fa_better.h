@@ -16,7 +16,7 @@
     exit(1); \
 }
 
-#define fa_get_array(float_array) fa_expanded_get_arr(float_array, sizeof(float_array), N_ITEMS(float_array), false)
+#define fa_get_array(float_array) fa_expanded_get_arr(float_array, sizeof(float_array), N_ITEMS(float_array), false, true)
 //~~~~~~~~~~~~~~~~~~~~~
 
 
@@ -29,7 +29,8 @@ typedef struct {
     unsigned      type;     //type of array e.g. char*
     unsigned      len : 24; //length of array
 
-    bool isMalloc;
+    bool isMalloc   : 1;
+    bool shouldFree : 1;
 
 } better_float;
 //~~~~~~~~~~~~~~~~~~~~~
@@ -44,7 +45,8 @@ better_float fa_expanded_get_arr(
     unsigned size_param, 
     unsigned length,
 
-    bool isMalloc
+    bool isMalloc,
+    bool shouldFree
 );
 
 void         fa_set_value(better_float* array, unsigned index, float value);
