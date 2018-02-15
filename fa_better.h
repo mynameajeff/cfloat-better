@@ -26,7 +26,7 @@ typedef struct {
 
     float*        array;    //self-explanatory
 
-    unsigned      type;     //type of array e.g. char*
+    unsigned      size_of;     //sizeof(array)
     unsigned      len : 24; //length of array
 
     bool isMalloc   : 1;
@@ -49,16 +49,19 @@ better_float fa_expanded_get_arr(
     bool shouldFree
 );
 
-void         fa_set_value(better_float* array, unsigned index, float value);
-float        fa_get_value(better_float* array, unsigned index);
+void         fa_set_value   (better_float* array, unsigned index, float value);
+float        fa_get_value   (better_float* array, unsigned index);
+float        fa_get_sum     (better_float* array);
 
-better_float fa_del_value(better_float* array, unsigned index);
 
-void         fa_clean_arr(better_float* array);
-better_float fa_split_arr(better_float* array, unsigned index, unsigned lor);
+better_float fa_del_value   (better_float* array, unsigned index);
 
-better_float fa_join_arr (better_float* array_1, better_float* array_2, unsigned lor);
-better_float fa_trim_arr (better_float* array, unsigned len, unsigned lor);
 
-better_float fa_reverse_arr(better_float* array);
+better_float fa_reverse_arr (better_float* array);
+
+void         fa_clean_arr   (better_float* array);
+better_float fa_split_arr   (better_float* array, unsigned index, unsigned lor);
+
+better_float fa_join_arr    (better_float* array_1, better_float* array_2, unsigned lor);
+better_float fa_trim_arr    (better_float* array, unsigned len, unsigned lor);
 //~~~~~~~~~~~~~~~~~~~~~
