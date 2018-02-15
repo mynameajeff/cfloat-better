@@ -54,8 +54,17 @@ void showcase(better_float* array) {
 
     output_better_array(array);
 
-    fa_clean_arr(array);
+    array->shouldFree = false;
 
+    better_float float_array_3 = fa_split_arr(array, 0, 1);
+
+    array->shouldFree = true;
+
+    *array = fa_join_arr(array, &float_array_3, 0);
+
+    output_better_array(array);
+
+    fa_clean_arr(array);
 }
 
 
