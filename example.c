@@ -64,6 +64,10 @@ void showcase(better_float* array) {
 
     output_better_array(array);
 
+    *array = fa_reverse_arr(array);
+
+    output_better_array(array);
+
     fa_clean_arr(array);
 }
 
