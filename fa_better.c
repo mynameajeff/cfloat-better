@@ -185,3 +185,19 @@ better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor) {
 
     return fa_expanded_get_arr(new_array, size, length, true, true);
 }
+
+
+better_float fa_reverse_arr(better_float* array) {
+
+    float* new_array = malloc(array->type);
+
+    for (
+        unsigned i = 0, x = (array->len - 1); 
+        i < array->len; 
+        new_array[i++] = array->array[x--]
+    );
+
+    fa_clean_arr(array);
+
+    return fa_expanded_get_arr(new_array, array->type, array->len, true, true);
+}
