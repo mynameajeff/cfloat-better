@@ -20,7 +20,7 @@ A simple attempt at making arrays a little easier to work with in C.
 ### float* array;
   This is where the float array is stored.
   
-### unsigned int type;
+### unsigned int size_of;
   This would contain the `sizeof(array)` value;
   
 ### unsigned int len : 24;
@@ -43,7 +43,10 @@ A simple attempt at making arrays a little easier to work with in C.
   
 ### float fa_get_value(better_float* array, unsigned index);
   This function allows you to retrieve an individual value from the `better_float` instance.
-  
+
+### float fa_get_sum(better_float* array);
+  This function allows you to retrieve the sum of all values within the `better_float` instance.
+
 ### better_float fa_del_value(better_float* array, unsigned index);
   This function allows you to delete a value from the `better_float` instance,
   returning a new instance with the value at the given index removed.
