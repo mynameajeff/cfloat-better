@@ -4,18 +4,19 @@
 
 void fa_clean_arr(better_float* array) {
 
-    if (array->isMalloc) free(array->array);
+    if (array->isMalloc && array->shouldFree) free(array->array);
 }
 
 
-better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc) {
+better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc, bool shouldFree) {
 
     better_float arr;
 
-    arr.len      = length;
-    arr.type     = size_param;
-    arr.array    = float_array;
-    arr.isMalloc = isMalloc;
+    arr.len        = length;
+    arr.type       = size_param;
+    arr.array      = float_array;
+    arr.isMalloc   = isMalloc;
+    arr.shouldFree = shouldFree;
 
     return arr;
 }
@@ -85,7 +86,7 @@ better_float fa_del_value(better_float* array, unsigned index) {
 
     }
 
-    return fa_expanded_get_arr(new_array, size, new_length, true);
+    return fa_expanded_get_arr(new_array, size, new_length, true, true);
 }
 
 
@@ -121,9 +122,9 @@ better_float fa_split_arr(better_float* array, unsigned index, unsigned lor) {
     }
 
 
-    if (array->isMalloc) free(array->array);
+    if (array->isMalloc && array->shouldFree) free(array->array);
 
-    return fa_expanded_get_arr(new_array, size, length, true);
+    return fa_expanded_get_arr(new_array, size, length, true, true);
 }
 
 
@@ -157,10 +158,10 @@ better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned 
         new_array[i + arr_1->len] = arr_2->array[i];
     }
 
-    if (array_1->isMalloc) free(array_1->array);
-    if (array_2->isMalloc) free(array_2->array);
+    if (array_1->isMalloc && array_1->shouldFree) free(array_1->array);
+    if (array_2->isMalloc && array_2->shouldFree) free(array_2->array);
 
-    return fa_expanded_get_arr(new_array, size, length, true);
+    return fa_expanded_get_arr(new_array, size, length, true, true);
 }
 
 
@@ -177,7 +178,7 @@ better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor) {
         ];
     }
 
-    if (array->isMalloc) free(array->array);
+    if (array->isMalloc && array->shouldFree) free(array->array);
 
-    return fa_expanded_get_arr(new_array, size, length, true);
+    return fa_expanded_get_arr(new_array, size, length, true, true);
 }
