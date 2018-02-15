@@ -73,5 +73,5 @@ A simple attempt at making arrays a little easier to work with in C.
 ### better_float fa_reverse_arr(better_float* array);
   This function allows you to reverse the order items within a `better_float` instance's array.
 
-#### better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc, bool shouldFree);
+##### better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsigned length, bool isMalloc, bool shouldFree);
   This function is what `fa_get_array` expands to. This is also used in some other functions to return a `better_float` instance.
