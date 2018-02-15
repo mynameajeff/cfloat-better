@@ -13,8 +13,8 @@ better_float fa_expanded_get_arr(float* float_array, unsigned size_param, unsign
     better_float arr;
 
     arr.len        = length;
-    arr.type       = size_param;
     arr.array      = float_array;
+    arr.size_of    = size_param;
     arr.isMalloc   = isMalloc;
     arr.shouldFree = shouldFree;
 
@@ -44,6 +44,19 @@ float fa_get_value(better_float* array, unsigned index) {
     if (index < array->len) return array->array[index];
 
     else ERROR_FAILED("get value at given index")
+}
+
+
+float fa_get_sum(better_float* array) {
+
+    float sum = 0;
+
+    for (unsigned i = 0; i < array->len; i++) {
+
+        sum += fa_get_value(array, i);
+    }
+
+    return sum;
 }
 
 
@@ -189,7 +202,7 @@ better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor) {
 
 better_float fa_reverse_arr(better_float* array) {
 
-    float* new_array = malloc(array->type);
+    float* new_array = malloc(array->size_of);
 
     for (
         unsigned i = 0, x = (array->len - 1); 
@@ -199,5 +212,5 @@ better_float fa_reverse_arr(better_float* array) {
 
     fa_clean_arr(array);
 
-    return fa_expanded_get_arr(new_array, array->type, array->len, true, true);
+    return fa_expanded_get_arr(new_array, array->size_of, array->len, true, true);
 }
