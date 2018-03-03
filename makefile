@@ -1,7 +1,7 @@
 
 #This is just a basic makefile for compilation.
 
-CFILES = example.c fa_better.c
+CFILES = documentation/example.c fa_better.c
 COUT = example
 CC = gcc
 
