@@ -24,10 +24,10 @@
 
 typedef struct {
 
-    float*        array;    //self-explanatory
+    float* array;      //self-explanatory
 
-    unsigned      size_of;     //sizeof(array)
-    unsigned      len : 24; //length of array
+    unsigned size_of;  //sizeof(array)
+    unsigned len : 24; //length of array
 
     bool isMalloc   : 1;
     bool shouldFree : 1;
