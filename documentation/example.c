@@ -1,5 +1,5 @@
 
-#include "fa_better.h"
+#include "../fa_better.h"
 
 #define ARR_LEN 10
 
@@ -13,7 +13,8 @@ void showcase_join    (better_float* array);
 void showcase_trim    (better_float* array);
 void showcase_double  (better_float* array);
 void showcase_reverse (better_float* array);
-
+void showcase_expand  (better_float* array);
+void showcase_fit_to  (better_float* array);
 
 int main() {
 
@@ -24,15 +25,18 @@ int main() {
     output_normal_array( float_array_1);
     output_better_array(&float_array_2);
 
-    showcase_set    (&float_array_2);
-    showcase_del    (&float_array_2);
-    showcase_split  (&float_array_2);
-    showcase_join   (&float_array_2);
-    showcase_trim   (&float_array_2);
-    showcase_double (&float_array_2);
-    showcase_reverse(&float_array_2);
+    showcase_set     (&float_array_2);
+    showcase_del     (&float_array_2);
+    showcase_split   (&float_array_2);
+    showcase_join    (&float_array_2);
+    showcase_trim    (&float_array_2);
+    showcase_double  (&float_array_2);
+    showcase_reverse (&float_array_2);
 
     printf("\nSum of all items in the array: %.f\n", fa_get_sum(&float_array_2));
+
+    showcase_expand  (&float_array_2);
+    showcase_fit_to  (&float_array_2);
 
     fa_clean_arr(&float_array_2);
 
@@ -106,6 +110,26 @@ void showcase_double(better_float* array) {
 void showcase_reverse(better_float* array) {
 
     *array = fa_reverse_arr(array);
+
+    output_better_array(array);
+}
+
+
+void showcase_expand(better_float* array) {
+
+    *array = fa_expand_arr(array, 4, 42.4);
+
+    output_better_array(array);
+}
+
+
+void showcase_fit_to(better_float* array) {
+
+    *array = fa_fit_to_arr(array, 10, 42.4);
+
+    output_better_array(array);
+
+    *array = fa_fit_to_arr(array, 20, 43.4);
 
     output_better_array(array);
 }
