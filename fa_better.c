@@ -69,6 +69,7 @@ better_float fa_del_value(better_float* array, unsigned index) {
     float*   new_array  = malloc(size);
     bool     isSwitched = false;
 
+
     if (new_array == NULL) {
         ERROR_FAILED("allocate memory for array");
     }
@@ -153,6 +154,7 @@ better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned 
 
     better_float *arr_1, *arr_2;
 
+
     if (lor == 0) {
 
         arr_1 = array_2;
@@ -174,6 +176,7 @@ better_float fa_join_arr(better_float* array_1, better_float* array_2, unsigned 
         new_array[i + arr_1->len] = arr_2->array[i];
     }
 
+
     fa_clean_arr(array_1);
     fa_clean_arr(array_2);
 
@@ -188,11 +191,13 @@ better_float fa_trim_arr(better_float* array, unsigned len, unsigned lor) {
 
     float* new_array = malloc(size);
 
+
     for (unsigned i = 0; i < length; i++) {
         new_array[i] = array->array[
             (lor == 0) ? i + len : i
         ];
     }
+
 
     fa_clean_arr(array);
 
@@ -204,13 +209,51 @@ better_float fa_reverse_arr(better_float* array) {
 
     float* new_array = malloc(array->size_of);
 
+
     for (
         unsigned i = 0, x = (array->len - 1); 
         i < array->len; 
         new_array[i++] = array->array[x--]
     );
 
+
     fa_clean_arr(array);
 
     return fa_expanded_get_arr(new_array, array->size_of, array->len, true, true);
+}
+
+
+better_float fa_return_expand(better_float* array, float* new_array, float base_value, unsigned size, unsigned len) {
+
+    for (unsigned i = 0; i < len; i++) {
+
+        if (i >= array->len) new_array[i] = base_value;
+
+        else                 new_array[i] = array->array[i];
+    }
+
+    fa_clean_arr(array);
+
+    return fa_expanded_get_arr(new_array, size, len, true, true);
+}
+
+
+better_float fa_expand_arr(better_float* array, unsigned len, float base_value) {
+
+    unsigned length = (array->len + len);
+    unsigned size   = sizeof(float) * length;
+
+    float* new_array = malloc(size);
+
+    return fa_return_expand(array, new_array, base_value, size, length);
+}
+
+
+better_float fa_fit_to_arr(better_float* array, unsigned len, float base_value) {
+
+    unsigned size = sizeof(float) * len;
+
+    float* new_array = malloc(size);
+
+    return fa_return_expand(array, new_array, base_value, size, len);
 }
