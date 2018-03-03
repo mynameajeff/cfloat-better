@@ -53,9 +53,7 @@ void         fa_set_value   (better_float* array, unsigned index, float value);
 float        fa_get_value   (better_float* array, unsigned index);
 float        fa_get_sum     (better_float* array);
 
-
 better_float fa_del_value   (better_float* array, unsigned index);
-
 
 better_float fa_reverse_arr (better_float* array);
 
@@ -64,4 +62,7 @@ better_float fa_split_arr   (better_float* array, unsigned index, unsigned lor);
 
 better_float fa_join_arr    (better_float* array_1, better_float* array_2, unsigned lor);
 better_float fa_trim_arr    (better_float* array, unsigned len, unsigned lor);
+
+better_float fa_expand_arr  (better_float* array, unsigned len, float base_value);
+better_float fa_fit_to_arr  (better_float* array, unsigned len, float base_value);
 //~~~~~~~~~~~~~~~~~~~~~
