@@ -60,6 +60,18 @@ float fa_get_sum(better_float* array) {
 }
 
 
+void fa_swap_values(better_float* array, unsigned index_base, unsigned index_sub) {
+
+    value side_base = fa_get_value(array, index_base);
+
+    value side_sub  = fa_get_value(array, index_sub);
+
+    fa_set_value(array, index_base, side_sub);
+    fa_set_value(array, index_sub, side_base);
+
+}
+
+
 better_float fa_del_value(better_float* array, unsigned index) {
 
     unsigned l_index    = index + 1;

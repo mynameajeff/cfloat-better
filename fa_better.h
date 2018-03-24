@@ -53,6 +53,8 @@ void         fa_set_value   (better_float* array, unsigned index, float value);
 float        fa_get_value   (better_float* array, unsigned index);
 float        fa_get_sum     (better_float* array);
 
+void         fa_swap_values (better_float* array, unsigned index_base, unsigned index_sub);
+
 better_float fa_del_value   (better_float* array, unsigned index);
 
 better_float fa_reverse_arr (better_float* array);

@@ -47,6 +47,9 @@ This file contains the notes/explanations for the various functions, macros and 
 ### float fa_get_sum(better_float* array);
   This function allows you to retrieve the sum of all values within the `better_float` instance.
 
+### void fa_swap_values(better_float* array, unsigned index_base, unsigned index_sub);
+  This function allows you to swap two values within the `better_float` instance via their indexes.
+
 ### better_float fa_del_value(better_float* array, unsigned index);
   This function allows you to delete a value from the `better_float` instance,
   returning a new instance with the value at the given index removed.
