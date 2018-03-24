@@ -8,6 +8,7 @@ void output_better_array(better_float* array);
 
 void showcase_set     (better_float* array);
 void showcase_del     (better_float* array);
+void showcase_swap    (better_float* array);
 void showcase_split   (better_float* array);
 void showcase_join    (better_float* array);
 void showcase_trim    (better_float* array);
@@ -27,6 +28,7 @@ int main() {
 
     showcase_set     (&float_array_2);
     showcase_del     (&float_array_2);
+    showcase_swap    (&float_array_2);
     showcase_split   (&float_array_2);
     showcase_join    (&float_array_2);
     showcase_trim    (&float_array_2);
@@ -59,6 +61,14 @@ void showcase_set(better_float* array) {
 void showcase_del(better_float* array) {
 
     *array = fa_del_value(array, 0);
+
+    output_better_array(array);
+}
+
+
+void showcase_swap(better_float* array) {
+
+    fa_swap_values(array, 0, 1);
 
     output_better_array(array);
 }
